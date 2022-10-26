@@ -21,8 +21,10 @@ def stats():
     # Added one flattened final input for pixel recognition.
     model = tf.keras.models.Sequential()
     model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
-    model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
     model.add(tf.keras.layers.Dense(units=10, activation=tf.nn.softmax))
 
     # Compiling the whole thing. 
@@ -35,16 +37,16 @@ def stats():
     # Evaluating the model for the final result.
     loss, accuracy = model.evaluate(X_test, y_test)
 
-    print(f"\n\nAverage loss is: {loss}") # To show loss we got.
+    print(f"\nAverage loss is: {loss}") # To show loss we got.
     print(f"Accurary is: {accuracy}") # To show accuracy we got.
 
-    askk = input("\n\nWould you like to save the model (y/n) ?: ")
+    askk = input("Would you like to save the model (y/n) ?: ")
     if askk == "y":
         model.save('digits.model') # Saving the model but not necessary.
     elif askk == "n":
         pass
     else:
-        print("\n\nWrong choice, Model couldn't saved.")
+        print("\nWrong choice, Model couldn't saved.")
 
 def mnist():
     # Gathering models with mnist.
@@ -76,16 +78,16 @@ def mnist():
 
     loss, accuracy = model.evaluate(X_test_flattened, y_test)
 
-    print(f"\n\nAverage loss is: {loss}") # To show loss we got.
-    print(f"Accurary is: {accuracy}\n\n") # To show accuracy we got.
+    print(f"\nAverage loss is: {loss}") # To show loss we got.
+    print(f"Accurary is: {accuracy}\n") # To show accuracy we got.
 
-    askk = input("Would you like to save the model (y/n) ?: ")
+    askk = input("Would you like to save the model (y/n)?: ")
     if askk == "y":
         model.save('digits.model') # Saving the model but not necessary.
     elif askk == "n":
         pass
     else:
-        print("\n\nWrong choice, Model couldn't saved.")
+        print("Wrong choice, Model couldn't saved.")
 
     # Picking a random handwrite digit to predict.
     randomm = randint(0, 99)
@@ -93,7 +95,7 @@ def mnist():
     # Realizing the real time photo of digit prediction.
     y_predicted = model.predict(X_test_flattened)
     plt.matshow(X_test[randomm])
-    print(f"\n\nPrediction is : {np.argmax(y_predicted[randomm])}\n\n")
+    print(f"\nPrediction is: {np.argmax(y_predicted[randomm])}")
 
 def identify(nameimage):
     # Gathering models with mnist.
@@ -110,8 +112,10 @@ def identify(nameimage):
     # Added one flattened final input for pixel recognition.
     model = tf.keras.models.Sequential()
     model.add(tf.keras.layers.Flatten())
-    model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
-    model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(units=64, activation=tf.nn.relu))
     model.add(tf.keras.layers.Dense(units=10, activation=tf.nn.softmax))
 
     # Compiling the whole thing. 
@@ -119,12 +123,12 @@ def identify(nameimage):
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
     # Fitting the train and test data.
-    model.fit(X_train, y_train, epochs=5)
+    model.fit(X_train, y_train, epochs=10)
 
     # Evaluating the model for the final result.
     loss, accuracy = model.evaluate(X_test, y_test)
 
-    print(f"\n\nAverage loss is: {loss}") # To show loss we got.
+    print(f"\nAverage loss is: {loss}") # To show loss we got.
     print(f"Accurary is: {accuracy}") # To show accuracy we got.
 
     # Load custom images to predict them.
@@ -132,18 +136,16 @@ def identify(nameimage):
         img = cv2.imread(nameimage)[:,:,0]
         img = np.invert(np.array([img]))
         prediction = model.predict(img)
-        print(f"\n\nThe number is probably a {np.argmax(prediction)}\n\n")
+        print(f"\nThe number is probably; {np.argmax(prediction)}")
         plt.imshow(img[0], cmap=plt.cm.binary)
         plt.show()
-        print()
-        print()
     except:
-        print(f"There is no image named {nameimage}.\n\n")
+        print(f"\nThere is no image named {nameimage}.")
 
-    askk = input("Would you like to save the model (y/n) ?: ")
+    askk = input("\nWould you like to save the model (y/n)?: ")
     if askk == "y":
         model.save('digits.model') # Saving the model but not necessary.
     elif askk == "n":
         pass
     else:
-        print("\n\nWrong choice, Model couldn't saved.")
+        print("Wrong choice, Model couldn't saved.")
