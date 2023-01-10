@@ -20,19 +20,19 @@ pip install numpy
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install digit-identifier.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Digit Identifier.
 
 ```bash
-pip install digit-identifier
+pip install digitidentifier
 ```
 
 ## Index and Usage
 
-digit-identifier.mnist():
+digitidentifier.mnist():
 Includes python file that is a handwriting digit predicter. 
 That predicter picks random handwriting digits from the MNIST algorithm and predicts both.
 ***
-digit-identifier.image():
+digitidentifier.image():
 Includes python file that is a handwriting digit predicter. 
 First of all, you have to add a 28x28 image to your dir which python file you are working in that.
 After that, give the image name as a parameter to the function with their file type like 'image.jpg'. 
