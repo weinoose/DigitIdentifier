@@ -1,5 +1,7 @@
 Change Log
 ==========
+1.0.1 (10/01/2023)
 1.0.0 (26/07/2021)
 ------------------
+- Project has updated.
 - Project has released.
