@@ -2,6 +2,8 @@
 
 Digit Identifier is an open-source python deep learning application, that predicts handwriting digits. This project was prepared to recognize handwriting digits using the tensorflow back-end.
 
+last update: 10/01/2023
+
 ```bash
 pip install tensorflow
 ```
