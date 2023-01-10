@@ -110,5 +110,3 @@ def image(nameimage):
         pass
     else:
         print("Wrong choice, model couldn't saved.")
-
-image('image.png')
